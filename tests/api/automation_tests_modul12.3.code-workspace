@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../../automation_tests_modul12.3"
+		},
+		{
+			"path": "../../config"
+		},
+		{
+			"path": "../../modules"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {}
+}
