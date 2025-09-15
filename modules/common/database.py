@@ -57,3 +57,4 @@ class Database():
         record = self.cursor.fetchall()
         return record
     
+    
