@@ -6,6 +6,7 @@ This repository contains a comprehensive automation testing framework developed 
 
 ## Project Structure
 
+```bash
 automation_test_modul12.3/ 
 |── modules/ 
 | ├── api/clients/ 
@@ -31,6 +32,7 @@ automation_test_modul12.3/
 ├── conftest.py 
 ├── pytest.ini 
 └── README.md
+```
 
 ---
 
