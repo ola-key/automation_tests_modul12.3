@@ -15,6 +15,7 @@ automation_test_modul12.3/
 │ │ └── database.py 
 │ └── ui/
 │   ├── base_page.py 
+│   ├── amazon_search_page.py 
 │   ├── sign_in_page.py 
 │   └── test_ui.py 
 ├── tests/ 
@@ -28,6 +29,7 @@ automation_test_modul12.3/
 │ │ └── test_db_2.py 
 │ └── ui/ 
 │   ├── test_ui_1.py 
+|   ├── test_amazon_search.py
 │   └── test_ui_page_object.py 
 ├── conftest.py 
 ├── pytest.ini 
