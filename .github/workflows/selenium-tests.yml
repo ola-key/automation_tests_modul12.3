@@ -33,18 +33,30 @@ jobs:
     - name: Start Xvfb (virtual display for Selenium)
       run: |
         sudo apt-get install xvfb
-        Xvfb :99 & export DISPLAY=:99
+        Xvfb :99 &
+        export DISPLAY=:99
 
     - name: Run tests with Allure
       run: |
-        pytest tests/ui --alluredir=allure-results
+        export DISPLAY=:99
+        pytest tests --alluredir=allure-results -v | tee pytest-log.txt
 
-    - name: Generate Allure Report
+    - name: Generate Allure Report (if results exist)
       run: |
-        allure generate allure-results --clean -o allure-report
+        if [ -d "allure-results" ] && [ "$(ls -A allure-results)" ]; then
+          allure generate allure-results --clean -o allure-report
+        else
+          echo "No Allure results found, skipping report generation."
+        fi
 
-    - name: Upload Allure Report as artifact
+    - name: Upload Allure Report
       uses: actions/upload-artifact@v4
       with:
         name: allure-report
         path: allure-report
+
+    - name: Upload Pytest Log
+      uses: actions/upload-artifact@v4
+      with:
+        name: pytest-log
+        path: pytest-log.txt
