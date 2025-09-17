@@ -9,3 +9,4 @@ def test_amazon_sort_by_best_sellers():
     page.search_product("wireless headphones")
     page.apply_sorting_best_sellers()
     page.close()
+    

@@ -38,3 +38,4 @@ class AmazonSearchPage(BasePage):
         # Вибір пункту "Best Sellers"
         best_sellers_option = wait.until(EC.element_to_be_clickable((By.ID, "s-result-sort-select_5")))
         best_sellers_option.click()
+        
