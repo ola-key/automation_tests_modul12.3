@@ -27,12 +27,13 @@ automation_test_modul12.3/
 │ │ └── test_http.py 
 │ ├── database/ 
 │ │ ├── test_database.py 
-│ │ └── test_db_2.py 
+│ │ ├── test_db_product.py 
+| | └── test_db_structure.py
 │ └── ui/ 
-│   ├── test_ui_1.py 
+│   ├── test_ui_github_login.py 
 |   ├── test_amazon_search.py
 │   ├── test_ui_page_object.py 
-|   ├── test_witamin_cart_page.py
+|   ├── test_witamin_add_to_cart.py
 ├── conftest.py 
 ├── pytest.ini 
 └── README.md
@@ -76,9 +77,9 @@ automation_test_modul12.3/
 pip install -r requirements.txt
 
 # Run all tests
-pytest
+pytest 
 
 # Run only UI tests
 pytest -m ui
-📌 Notes
+Notes
 This project demonstrates multi-layer testing skills and a clean modular structure. It was developed as part of a certified QA automation course and includes both required and extended functionality.
