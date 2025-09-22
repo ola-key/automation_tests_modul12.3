@@ -73,8 +73,6 @@ automation_test_modul12.3/
 ## How to Run Tests
 
 ```bash
-# Install dependencies
-pip install -r requirements.txt
 
 # Run all tests
 pytest 
