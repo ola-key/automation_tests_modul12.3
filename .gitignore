@@ -1,0 +1,41 @@
+#Кеші та байткод
+__pycache__/
+.pytest_cache/
+
+#Віртуальне середовище
+.venv/
+
+#Системні та службові папки
+.github/
+
+#База даних
+db/
+
+#Файл залежностей (якщо не хочеш трекати)
+requirements.txt
+#Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+#Віртуальні середовища
+venv/
+env/
+ENV/
+.vscode/
+
+#Тестові артефакти
+*.log
+*.sqlite3
+*.db
+
+#IDE та редактори
+.idea/
+*.swp
+*.sublime-project
+*.sublime-workspace
+
+#Системні файли
+.DS_Store
+Thumbs.db

@@ -2,21 +2,6 @@ import pytest
 import sqlite3
 from modules.common.database import Database
 
-@pytest.mark.database  # Тест на перегляд структури бази
-def test_inspect_schema():
-    db = Database()
-    db.cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-    tables = db.cursor.fetchall()
-    print("\n📦 Структура бази даних:")
-    for table in tables:
-        table_name = table[0]
-        print(f"\n🔹 Таблиця: {table_name}")
-        db.cursor.execute(f"PRAGMA table_info({table_name});")
-        columns = db.cursor.fetchall()
-        for col in columns:
-            cid, name, dtype, notnull, default, pk = col
-            print(f"  - {name} ({dtype}) {'NOT NULL' if notnull else ''} {'PK' if pk else ''}")
-
 
 @pytest.mark.database           #Тест на вставку некоректного типу даних
 def test_insert_invalid_data_type():
@@ -70,18 +55,5 @@ def test_order_date_format():
         assert isinstance(date, str)
         assert ':' in date  # базова перевірка часу
 
-@pytest.mark.database
-def test_inspect_schema():
-    db = Database()
-    db.cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-    tables = db.cursor.fetchall()
-    print("\n📦 Структура бази даних:")
-    for table in tables:
-        table_name = table[0]
-        print(f"\n🔹 Таблиця: {table_name}")
-        db.cursor.execute(f"PRAGMA table_info({table_name});")
-        columns = db.cursor.fetchall()
-        for col in columns:
-            cid, name, dtype, notnull, default, pk = col
-            print(f"  - {name} ({dtype}) {'NOT NULL' if notnull else ''} {'PK' if pk else ''}")
+
 
