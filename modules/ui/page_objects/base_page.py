@@ -3,6 +3,9 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 
 class BasePage:
     def __init__(self):
@@ -15,6 +18,11 @@ class BasePage:
             service=Service(ChromeDriverManager().install()),
             options=options
         )
+    
+    def wait_for_element(self, by, locator, timeout=10):
+        return WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((by, locator))
+    )
+
 
     def close(self):
         self.driver.quit()
