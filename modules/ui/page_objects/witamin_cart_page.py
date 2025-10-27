@@ -1,49 +1,69 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 from modules.ui.page_objects.base_page import BasePage
-import time
 
 class WitaminCartPage(BasePage):
-    def __init__(self):
+    def __init__(self, timeout: int = 10):
         super().__init__()
+        self.timeout = timeout
 
     def open_homepage(self):
         self.driver.get("https://witamin.pl")
+        return self
 
     def click_produkty(self):
-        wait = WebDriverWait(self.driver, 10)
-        produkty = wait.until(EC.element_to_be_clickable(
-            (By.XPATH, '//*[@id="category-10"]/a')
-        ))
-        produkty.click()
+        try:
+            produkty = WebDriverWait(self.driver, self.timeout).until(
+                EC.element_to_be_clickable((By.XPATH, '//*[@id="category-10"]/a'))
+            )
+            produkty.click()
+        except TimeoutException:
+            raise TimeoutException("Category 'produkty' not clickable or not found")
+        return self
 
     def click_first_product(self):
-        wait = WebDriverWait(self.driver, 10)
-        product = wait.until(EC.element_to_be_clickable(
-            (By.XPATH, '//*[@id="js-product-list"]/div/ul/li[1]/article/div[1]/div/a/img')
-        ))
-        product.click()
+        try:
+            product = WebDriverWait(self.driver, self.timeout).until(
+                EC.element_to_be_clickable((By.XPATH, '//*[@id="js-product-list"]/div/ul/li[1]/article/div[1]/div/a/img'))
+            )
+            product.click()
+        except TimeoutException:
+            raise TimeoutException("First product not clickable or not found")
+        return self
 
     def add_to_cart(self):
-        wait = WebDriverWait(self.driver, 10)
-        add_button = wait.until(EC.element_to_be_clickable(
-            (By.XPATH, '//*[@id="add-to-cart-or-refresh"]/div[3]/div[1]/div[2]/div/button')
-        ))
-        add_button.click()
+        try:
+            add_button = WebDriverWait(self.driver, self.timeout).until(
+                EC.element_to_be_clickable((By.XPATH, '//*[@id="add-to-cart-or-refresh"]/div[3]/div[1]/div[2]/div/button'))
+            )
+            add_button.click()
+        except TimeoutException:
+            raise TimeoutException("Add to cart button not clickable or not found")
+        return self
 
     def go_to_cart(self):
-        wait = WebDriverWait(self.driver, 10)
-        cart_button = wait.until(EC.element_to_be_clickable(
-            (By.XPATH, '//*[@id="blockcart-modal"]/div/div/div[2]/div/div[2]/div/div[1]/a')
-        ))
-        cart_button.click()
-        time.sleep(1)
+        try:
+            cart_button = WebDriverWait(self.driver, self.timeout).until(
+                EC.element_to_be_clickable((By.XPATH, '//*[@id="blockcart-modal"]/div/div/div[2]/div/div[2]/div/div[1]/a'))
+            )
+            cart_button.click()
+            # wait for cart page/modal to appear instead of sleep
+            WebDriverWait(self.driver, self.timeout).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, "div.cart-container, #blockcart-modal"))
+            )
+        except TimeoutException:
+            raise TimeoutException("Cart button/modal did not appear")
+        return self
 
     def proceed_to_checkout(self):
-        wait = WebDriverWait(self.driver, 10)
-        checkout_button = wait.until(EC.element_to_be_clickable(
-        (By.XPATH, '//*[@id="main"]/div/div[2]/div[1]/div[2]/div/a')
-        ))
-        checkout_button.click()
+        try:
+            checkout_button = WebDriverWait(self.driver, self.timeout).until(
+                EC.element_to_be_clickable((By.XPATH, '//*[@id="main"]/div/div[2]/div[1]/div[2]/div/a'))
+            )
+            checkout_button.click()
+        except TimeoutException:
+            raise TimeoutException("Checkout button not clickable or not found")
+        return self
 
