@@ -33,7 +33,7 @@ automation_test_modul12.3/
 │   ├── test_ui_github_login.py 
 |   ├── test_amazon_search.py
 │   ├── test_ui_page_object.py 
-|   ├── test_witamin_add_to_cart.py
+|   └── test_witamin.py 
 ├── conftest.py 
 ├── pytest.ini 
 └── README.md
