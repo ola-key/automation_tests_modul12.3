@@ -11,8 +11,9 @@ def test_amazon_sort_by_best_sellers():
     page.apply_sorting_best_sellers()
 
     # Перевірка: чи є результати
-    results = page.driver.find_elements(By.CSS_SELECTOR, ".s-result-item")
-    assert len(results) > 0, "Очікується хоча один результат пошуку"
+    results = page.driver.find_elements(By.CSS_SELECTOR, "div[data-component-type='s-search-result']")
 
+    assert len(results) > 0, "Очікується хоча один результат пошуку"
+    
     page.close()
         

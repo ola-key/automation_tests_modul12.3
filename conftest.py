@@ -1,5 +1,5 @@
 import pytest
-from modules.api.clients.github import GitHub # Імпорт для фікстури github_api
+from modules.api.clients.github import GitHub  # Імпорт для фікстури github_api
 
 class User:
     def __init__(self) -> None:
@@ -24,13 +24,5 @@ def user():
 
     user.remove()
 
-import pytest
-from modules.api.clients.github import GitHub # Імпорт для фікстури github_api
-@pytest.fixture
-def github_api():
-    return GitHub()
 
-import sys
-import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
   
